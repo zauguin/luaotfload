@@ -370,7 +370,6 @@ This is a sketch of the luaotfload db:
         index                : int;      // index in the mappings table
         italicangle          : float;    // italic angle; non-zero with oblique faces
         location             : string;   // "texmf" | "system" | "local"
-        metafamily           : string;   // alternative family identifier if appropriate, sanitized
         plainname            : string;   // unsanitized font name
         typographicsubfamily : string;   // sanitized preferred subfamily (names table 14)
         psname               : string;   // PostScript name
@@ -1062,11 +1061,6 @@ local lookup_fontname = function (specification, name, style)
             then
                 lastresort = face
             end
-        elseif face.metafamily == name
-            and (   regular_synonym [typographicsubfamily]
-                 or regular_synonym [subfamily])
-        then
-            lastresort = face
         end
     end
     if fallback then
@@ -1708,7 +1702,6 @@ t1_fullinfo = function (filename, _subfont, location, basename, format)
     sanitized = sanitize_fontnames ({
         fontname              = fontname,
         psname                = fullname,
-        metafamily            = familyname,
         familyname            = familyname,
         weight                = metadata.weight, --- string identifier
         typographicsubfamily  = style,
