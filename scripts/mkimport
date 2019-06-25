@@ -939,8 +939,8 @@ local make_header = function (files)
 end
 
 
-local scope_start         = "\ndo  --- [luaotfload, %s scope for “%s” %s] ---\n\n"
-local scope_stop          = "\nend --- [luaotfload, %s scope for “%s”] ---\n\n"
+local scope_start         = "\n(function() --- [luaotfload, %s scope for “%s” %s] ---\n\n"
+local scope_stop          = "\nend)();     --- [luaotfload, %s scope for “%s”] ---\n\n"
 local luaotfload_modeline = "\n--- vim:ft=lua:sw=2:ts=8:et:tw=79\n"
 
 local assemble_fontloader = function (tgt, dst)
