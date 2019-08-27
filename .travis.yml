@@ -15,5 +15,15 @@ cache:
 
 
 script: 
-  - l3build check -H || ( cat build/*/`ls -t  build/*/*.log | head -n1 | xargs basename | cut -f 1 -d . `.log && false )
+  - l3build ctan -H || ( cat build/*/`ls -t  build/*/*.log | head -n1 | xargs basename | cut -f 1 -d . `.log && false )
 
+deploy:
+  provider: releases
+  api_key:
+    secure: GmDlAdbWykZ7qqaVYJhkP+d/6oiT6aFB+GdUAmHoRPQlGK+yB8Gu61qgRV0hbpkD5Lz30AQg2BWeoZhhP9eh7MQU5vqbZsRrSMViXs6RiRwXuchOyvsmIFsx5f8IiZTcKeEy1JwicqtfkmKe8vTbbeSVOWB2hugWN/nWhyWcSvjRa49j03X1nRa8HlTVDujUvxjI1Mn9bNSYRk1qNN5yFHkXH+wIE1Am6X2GMIYD3Ej7I0CJxAi3+D/l7lG3SlgVdqS35/Hlg9zN2YrFENZAfxZHGrV9Z2woT/+SxB5w8asDGqD0+olOOAEWcgQD2ttBqJLYCsM+o+DOx/Ljrj+Se3mfMUzjV4cl4lhYwtvqx5yhyymtiWxEI0lnKFdQKmh+741nga4F9vg4cL58Sfga926MtQ2tdgkgvh7mp2pQaHM9H/TCGVfX7R8uHgLTLEriM7iHfQbxC7ErXoXnKP9kTM8nlCst1+y11V685F/Xf1ksm0dVYZSp3I7IdfGGBkwdjME4iyckTUbnuVqMg95MRIAhK1JD1AzPW6dCDdjrtNcz8augVW7+U2/zN4m3I/xc8fgf/uHQeEaNNgdX3HnCQ1GpPDMPyEO5vAAYcHawT4W1Uj0YYqIdCCI6OvHdFFYfj23GJWxESiXXhSpWS6yY8zYMx7xwIsvstfKD3kHgFcw=
+  file: luaotfload-dev.zip
+  skip_cleanup: true
+  on:
+    tags: true
+  prerelease: true
+  draft: true
