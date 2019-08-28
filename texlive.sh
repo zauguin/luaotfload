@@ -54,6 +54,11 @@ tlmgr install  amsmath lualatex-math
 # a few more packages
 tlmgr install   luacode environ adjustbox collectbox ms varwidth geometry url ulem
 
+# some packages required for the documentation
+tlmgr install   standalone luatex85 tikzmarmots tikzducks pgf-blur inconsolata \
+                tools caption hyperref metalogo fancyvrb mdwtools titlesec tocloft \
+                pdfpages listings
+
  
 # Assuming a 'basic' font set up, metafont is required to avoid
 # warnings with some packages and errors with others
