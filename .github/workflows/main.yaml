@@ -72,5 +72,7 @@ jobs:
             # Assuming a 'basic' font set up, metafont is required to avoid
             # warnings with some packages and errors with others
             metafont mfware texlive-scripts
+      - name: Install docutils
+        run: sudo apt-get install python3-docutils
       - name: Run l3build
         run: l3build install && l3build ctan -H --show-log-on-error
