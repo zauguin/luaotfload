@@ -76,3 +76,14 @@ jobs:
         run: sudo apt-get install python3-docutils
       - name: Run l3build
         run: l3build install && l3build ctan -H --show-log-on-error
+      - name: Archive CTAN packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: CTAN
+          path: build/distrib/ctan/*.zip
+      - name: Archive test output
+        uses: actions/upload-artifact@v2
+        with:
+          name: testfiles
+          path: build/test*
+          retention-days: 1
