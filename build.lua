@@ -19,12 +19,24 @@ print(mydata.email)
 
 --------- setup things for a dev-version
 -- See stackoverflow.com/a/12142066/212001 / build-config from latex2e
-local maimainanch do
+local main_branch do
   local tag = os.getenv'TRAVIS_TAG'
+  if not tag then
+    tag = os.getenv'GITHUB_REF'
+    if tag then
+      tag = tag:match'^refs/tags/(.*)$'
+    end
+  end
   if tag and tag ~= "" then
     main_branch = not string.match(tag, '-dev$')
   else
     local branch = os.getenv'TRAVIS_BRANCH'
+    if not branch then
+      branch = os.getenv'GITHUB_REF'
+      if branch then
+        branch = branch:match'^refs/heads/(.*)$'
+      end
+    end
     if not branch then
       local f = io.popen'git rev-parse --abbrev-ref HEAD'
       branch = f:read'*a':sub(1,-2)
