@@ -16,13 +16,15 @@ jobs:
       - name: Load cache
         uses: actions/cache@v2
         with:
-          path: ~/texlive
+          path: |
+            ~/.texlive
+            /tmp/texlive
           key: texlive-v0-${{ steps.get-id.outputs.id }}
           restore-keys: texlive-v0-
       - name: Install TeX Live
-        uses: zauguin/install-texlive@v1
+        uses: pgf-tikz/actions/install-tl@54ab9db16b5a993502431b719e5bd8fc341482e6
         with:
-          packages: |
+          packages:
             # Needed for any use of texlua even if not testing LuaTeX
             l3build latex latex-bin luatex latex-bin-dev
             #
